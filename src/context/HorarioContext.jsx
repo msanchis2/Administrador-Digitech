@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
 import { SCHEDULE } from "@/data/schedule";
+import { fetchDocentes } from "@/services/docentes";
 import * as horarioService from "@/services/horario";
 import { clone } from "@/utils/format";
 
@@ -9,13 +10,18 @@ const MAX_HIST = 25;
 /**
  * Horario compartido entre «Horarios» y «Profesorado». Vive por encima de las
  * rutas para que los cambios sin guardar no se pierdan al cambiar de pestaña.
+ *
+ * También guarda la disponibilidad de cada profesor (`bloqueos`, de las fichas)
+ * para no colocar clases en franjas marcadas como «no disponible».
  */
 export function HorarioProvider({ children }) {
   const [clases, setClases] = useState(null);
   const [dirty, setDirty] = useState(false);
   const [hist, setHistState] = useState([]);
+  const [bloqueos, setBloqueos] = useState({});
   const loading = useRef(null);
   const clasesRef = useRef(null);
+  const savedRef = useRef(null);
   const histRef = useRef([]);
 
   const commit = useCallback((next) => {
@@ -34,6 +40,9 @@ export function HorarioProvider({ children }) {
       if (!loading.current) {
         loading.current = (async () => {
           let data;
+          fetchDocentes()
+            .then((rows) => setBloqueos(Object.fromEntries(rows.map((r) => [r.nombre, r.bloqueos || {}]))))
+            .catch(() => {});
           try {
             data = await horarioService.fetchHorario();
             if (!data) {
@@ -43,6 +52,7 @@ export function HorarioProvider({ children }) {
           } catch {
             data = clone(SCHEDULE.clases);
           }
+          savedRef.current = data;
           commit(data);
           return data;
         })();
@@ -80,13 +90,35 @@ export function HorarioProvider({ children }) {
 
   const save = useCallback(async () => {
     await horarioService.saveHorario(clasesRef.current);
+    savedRef.current = clasesRef.current;
     setDirty(false);
     setHist([]);
   }, [setHist]);
 
+  /** Vuelve a la última versión guardada. */
+  const discard = useCallback(() => {
+    commit(savedRef.current);
+    setDirty(false);
+    setHist([]);
+  }, [commit, setHist]);
+
+  /** Lo llama la ficha del profesor al cambiar su disponibilidad. */
+  const setBloqueosDocente = useCallback((nombre, b) => setBloqueos((all) => ({ ...all, [nombre]: b || {} })), []);
+
   const value = useMemo(
-    () => ({ clases, dirty, canUndo: hist.length > 0, ensureLoaded, mutate, undo, save }),
-    [clases, dirty, hist.length, ensureLoaded, mutate, undo, save],
+    () => ({
+      clases,
+      bloqueos,
+      dirty,
+      canUndo: hist.length > 0,
+      ensureLoaded,
+      mutate,
+      undo,
+      save,
+      discard,
+      setBloqueosDocente,
+    }),
+    [clases, bloqueos, dirty, hist.length, ensureLoaded, mutate, undo, save, discard, setBloqueosDocente],
   );
   return <HorarioContext.Provider value={value}>{children}</HorarioContext.Provider>;
 }

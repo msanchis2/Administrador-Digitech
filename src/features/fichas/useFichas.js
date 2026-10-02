@@ -13,7 +13,7 @@ const SAVE_DELAY = 700;
  */
 export function useFichas() {
   const toast = useToast();
-  const { clases, ensureLoaded } = useHorario();
+  const { clases, ensureLoaded, setBloqueosDocente } = useHorario();
   const [docentes, setDocentes] = useState(null);
   const docentesRef = useRef({});
   const timers = useRef({});
@@ -43,13 +43,14 @@ export function useFichas() {
       const merged = { ...buildFicha(n, docentesRef.current, cargas || {}), ...patch };
       docentesRef.current = { ...docentesRef.current, [n]: merged };
       setDocentes(docentesRef.current);
+      if (patch.bloqueos) setBloqueosDocente(n, patch.bloqueos);
       // El temporizador sobrevive al desmontaje a propósito: así no se pierde el último cambio.
       clearTimeout(timers.current[n]);
       timers.current[n] = setTimeout(() => {
         upsertDocente(merged).catch((e) => toast(`No se pudo guardar: ${e.message}`));
       }, SAVE_DELAY);
     },
-    [cargas, toast],
+    [cargas, toast, setBloqueosDocente],
   );
 
   return { loading: !cargas || !docentes, cargas, nombres, getFicha, updateFicha };

@@ -162,15 +162,18 @@ export function profesoresLibresEnFct(clases) {
 }
 
 /**
- * Intercambia dos sesiones de una clase (muta `cl`).
+ * Intercambia dos sesiones de una clase (muta `cl`). Respeta los demás grupos y
+ * la disponibilidad (`bloqueos`) de los profesores.
  * Devuelve `null` si se ha hecho o un mensaje de error si hay conflicto.
  */
-export function trySwap(clases, cl, a, b) {
+export function trySwap(clases, cl, a, b, bloqueos = {}) {
   const sa = cl.grid[a.h][a.d];
   const sb = cl.grid[b.h][b.d];
   const busy = busyOthers(clases, cl.clase);
   if (busy[b.d][b.h].has(sa[1])) return `${sa[1]} ya imparte a la hora de destino en otra clase`;
   if (busy[a.d][a.h].has(sb[1])) return `${sb[1]} ya imparte a la hora de origen en otra clase`;
+  if (bloqueos[sa[1]]?.[`${b.d}|${b.h}`]) return `${sa[1]} no está disponible a la hora de destino`;
+  if (bloqueos[sb[1]]?.[`${a.d}|${a.h}`]) return `${sb[1]} no está disponible a la hora de origen`;
   cl.grid[b.h][b.d] = sa;
   cl.grid[a.h][a.d] = sb;
   return null;

@@ -92,11 +92,29 @@ src/
 - Cada feature trae su propio CSS; lo global está en `src/styles/`. Se mantienen los mismos nombres de clase que el original.
 - Alias `@/` → `src/`.
 
+## Edición del horario
+
+Quien tenga permiso (admin o `edita_horarios`) ve el botón **✏️ Editar horario**. En modo edición aparece una barra con **Deshacer**, **Guardar cambios** y **Salir / Descartar y salir**. Los cambios no se guardan hasta pulsar «Guardar», y se conservan aunque cambies de sección. Al guardar, el horario se actualiza para todo el centro, y como las vistas «Por clase» y «Por profesor» se calculan a partir del mismo horario, siempre coinciden.
+
+- **Por clase**: pulsa una sesión y luego una casilla verde para moverla, u otra sesión para intercambiarlas. También tienes «Compactar» y «Restablecer al original».
+- **Por profesor**: pulsa una sesión del profesor y muévela a una franja verde, es decir, una en la que el profesor y ese grupo están libres a la vez.
+- **Asignaturas**: tabla profesor → grupo → asignatura → horas.
+  - **Quitar** borra del horario todas las horas de esa asignatura con ese profesor en ese grupo.
+  - **Añadir** coloca automáticamente las horas indicadas en los huecos compatibles. Prefiere rellenar huecos entre clases y hacer bloques seguidos, sin poner más de 3 h de la asignatura el mismo día.
+
+Una casilla es válida solo si el grupo está libre, el profesor no da clase a esa hora en otro grupo y no la tiene marcada como **no disponible** en su ficha (Profesorado → Disponibilidad horaria).
+
+Para añadir una asignatura se exige además que:
+
+1. ningún otro profesor la imparta ya en ese grupo (ni el mismo profesor);
+2. el profesor tenga suficientes **horas libres**: franjas en las que no da clase y no está bloqueado;
+3. haya suficientes franjas en las que **coinciden libres** el profesor y el grupo.
+
 ## Roles y permisos
 
 | Sección             | Quién la ve                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
-| Horarios            | Todos (pestaña «Reorganizar»: admin o `edita_horarios`)                                                   |
+| Horarios            | Todos (botón «Editar horario»: admin o `edita_horarios`)                                                  |
 | Profesorado         | Todos (cada docente edita su perfil; gestión: admin o `edita_fichas`)                                     |
 | Evaluación          | Admin, coordinación y administración (pesos: solo admin)                                                  |
 | Alumnado            | Todos (gestión ve todos los grupos; un profesor, solo los suyos). Importar/editar: admin y administración |
