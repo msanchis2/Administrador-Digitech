@@ -1,0 +1,70 @@
+/* Modo oscuro: piezas globales. Cada feature añade los suyos en su CSS. */
+body.dark .btn {
+  background: var(--card);
+  color: var(--ink);
+}
+body.dark .btn.primary {
+  background: var(--accent);
+  color: #0b1220;
+}
+body.dark input,
+body.dark select,
+body.dark .textarea {
+  background: #0f1a2e;
+  color: var(--ink);
+  border-color: var(--line);
+}
+body.dark header,
+body.dark .card,
+body.dark .login {
+  background: var(--card);
+}
+body.dark .logo {
+  background: #0b1220;
+}
+body.dark .nav,
+body.dark th,
+body.dark td {
+  border-color: var(--line);
+}
+body.dark .chip,
+body.dark .hgrid {
+  background: var(--card);
+  color: var(--ink);
+}
+body.dark .hsub button,
+body.dark .subnav a {
+  background: #111c30;
+  color: var(--mut);
+}
+body.dark .hsub button.act,
+body.dark .subnav a.act {
+  background: var(--accent);
+  color: #0b1220;
+}
+body.dark .hslot {
+  background: #131e31;
+  color: var(--mut);
+}
+body.dark .htime b {
+  color: var(--ink);
+}
+body.dark .hrecreo {
+  background: #111c30;
+}
+body.dark .rolepill,
+body.dark .cytag-light {
+  background: #312e81;
+  color: #c7d2fe;
+}
+body.dark .msg.warn {
+  background: #3b2f16;
+  color: #fcd34d;
+  border-color: #78591c;
+}
+body.dark .placeholder {
+  border-color: var(--line);
+}
+body.dark .toast {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}

@@ -1,0 +1,6 @@
+/* Estilos globales. Los específicos de cada sección viven junto a su feature. */
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./shared.css";
+@import "./dark.css";

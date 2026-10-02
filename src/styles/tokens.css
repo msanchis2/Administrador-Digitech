@@ -1,0 +1,21 @@
+:root {
+  --ink: #1e293b;
+  --mut: #64748b;
+  --line: #e2e8f0;
+  --bg: #f5f7fa;
+  --card: #fff;
+  --accent: #4f46e5;
+  --rail: #eef1f5;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+body.dark {
+  --ink: #e6eaf2;
+  --mut: #94a3b8;
+  --line: #2a3648;
+  --bg: #0e1526;
+  --card: #1a2436;
+  --rail: #161f30;
+  --accent: #818cf8;
+}

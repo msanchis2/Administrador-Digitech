@@ -1,0 +1,101 @@
+.fcttog {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.htools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* ---------- Sesiones ---------- */
+.hsess {
+  border: 1px solid;
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 6px 7px;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  text-align: left;
+  color: var(--ink);
+}
+.hsess.dim {
+  opacity: 0.26;
+}
+.hsess.click {
+  cursor: pointer;
+  width: 100%;
+}
+.hsess.picked {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.hsess .a {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.hsess .p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+/* ---------- Casillas libres en modo edición ---------- */
+.hslot.gap {
+  background: repeating-linear-gradient(45deg, #fff7ed, #fff7ed 6px, #ffefdd 6px, #ffefdd 12px);
+  border-color: #fed7aa;
+  color: #c2410c;
+  font-weight: 600;
+}
+.hslot.ok {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  color: #15803d;
+  font-weight: 600;
+  cursor: pointer;
+}
+.hslot.no {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.reasign {
+  background: #f5f5ff;
+  border: 1px solid #c7cbf5;
+  border-radius: 9px;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+.reasign select {
+  width: auto;
+  padding: 5px 8px;
+  margin-left: 4px;
+}
+.impact {
+  background: #f5f5ff;
+  border: 1px solid #c7cbf5;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+body.dark .hsess .a {
+  color: #0b1220;
+}
+body.dark .reasign,
+body.dark .impact {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink);
+}

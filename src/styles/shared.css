@@ -1,0 +1,200 @@
+/* Piezas reutilizadas por varias secciones. */
+
+/* ---------- Barras de herramientas ---------- */
+.hbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.hsub {
+  display: flex;
+  gap: 4px;
+}
+.hsub button {
+  border: none;
+  background: #eef1f5;
+  padding: 8px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mut);
+  border-radius: 8px;
+}
+.hsub button.act {
+  background: var(--accent);
+  color: #fff;
+}
+.hselrow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.hselrow select {
+  width: auto;
+  min-width: 170px;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--mut);
+  margin-bottom: 12px;
+  align-items: center;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.savebar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+/* ---------- Rejilla semanal (horarios y disponibilidad) ---------- */
+.hgrid-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.hgrid {
+  display: grid;
+  grid-template-columns: 78px repeat(5, 1fr);
+  gap: 5px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+}
+.hhead {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mut);
+  text-align: center;
+  padding: 4px 0;
+}
+.htime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 6px;
+}
+.htime b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.htime span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--mut);
+}
+.hrecreo {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--mut);
+  background: #f1f5f9;
+  border-radius: 6px;
+  padding: 3px;
+}
+.hslot {
+  min-height: 48px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: #fcfcfd;
+  width: 100%;
+  font-size: 10px;
+  color: var(--mut);
+}
+
+/* ---------- Chips, etiquetas y píldoras ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.chip.sel {
+  border-color: var(--accent);
+}
+.cytag {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.14);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-left: 4px;
+}
+.cytag-light {
+  background: #eef2ff;
+  color: #3730a3;
+}
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ---------- Contadores ---------- */
+.prstats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.prstats div {
+  flex: 1;
+  min-width: 90px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+.prstats b {
+  display: block;
+  font-size: 24px;
+  font-family: var(--font-mono);
+}
+.prstats span {
+  font-size: 11px;
+  color: var(--mut);
+}
+
+.tutor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .hgrid {
+    grid-template-columns: 58px repeat(5, minmax(84px, 1fr));
+    min-width: 520px;
+    font-size: 11px;
+  }
+}

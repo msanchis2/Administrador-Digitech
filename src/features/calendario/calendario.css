@@ -1,0 +1,77 @@
+.calbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.calnav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.calmes {
+  min-width: 150px;
+  text-align: center;
+  font-family: var(--font-display);
+}
+.calgrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.calhead {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mut);
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+.calcell {
+  min-height: 66px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px;
+  background: var(--card);
+  overflow: hidden;
+}
+.calcell.out {
+  border: none;
+  background: transparent;
+}
+.calcell.today {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.calcell.clickable {
+  cursor: pointer;
+}
+.calcell.fest {
+  background: #fef2f2;
+}
+.calnum {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--mut);
+}
+.calev {
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 1px 4px;
+  margin-top: 2px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.calev-more {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+body.dark .calcell.fest {
+  background: #3b1d1d;
+}

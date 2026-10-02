@@ -1,0 +1,42 @@
+.asistab {
+  width: 100%;
+}
+.asistab td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.al-nom {
+  font-size: 13px;
+  font-weight: 600;
+}
+.al-est {
+  white-space: nowrap;
+  width: 1%;
+}
+.estbtn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--mut);
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 12px;
+  margin-right: 3px;
+  cursor: pointer;
+}
+.al-nota input {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 8px;
+  font-size: 12px;
+  width: 100%;
+  min-width: 120px;
+}
+
+@media (max-width: 640px) {
+  .al-nota {
+    display: none;
+  }
+}
